@@ -16,3 +16,9 @@
 1. Экспорт контейнеров
 
 Экспортируйте полученные контейнеры в tar.gz и прикрепите ссылку на их скачивание.
+
+Ссылки:
+[nginx](https://disk.yandex.ru/d/QZ3WWvdTk7VRCg)
+[php](https://disk.yandex.ru/d/AV4cOx5qfS1s9A)
+[mariadb_master](https://disk.yandex.ru/d/Kykm_XBtZtk88g)
+[mariadb_slave](https://disk.yandex.ru/d/otTLTW0b5yjTZg)
