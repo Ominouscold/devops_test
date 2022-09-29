@@ -14,3 +14,36 @@ services:
     image: php:7.4-fpm
     volumes:
       - './src:/var/www/html'
+  db_master:
+    image: bitnami/mariadb:latest
+    container_name: master
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+    - MARIADB_ROOT_PASSWORD=root
+    - MARIADB_REPLICATION_MODE=master
+    - MARIADB_REPLICATION_USER=repl_user
+    - MARIADB_REPLICATION_PASSWORD=root
+    - MARIADB_USER=user
+    - MARIADB_PASSWORD=root
+    - MARIADB_DATABASE=vedita-database
+    restart: always
+  
+  db_slave:
+      image: bitnami/mariadb:latest
+      container_name: slave
+      links:
+      - db_master
+      environment:
+      - MARIADB_MASTER_ROOT_PASSWORD=slave_root
+      - MARIADB_REPLICATION_MODE=slave
+      - MARIADB_REPLICATION_USER=repl_user
+      - MARIADB_REPLICATION_PASSWORD=slave_root
+      - MARIADB_MASTER_HOST=db_master
+      - MARIABD_MASTER_PORT=3306
+      - MARIADB_MASTER_USER=user
+      - MARIADB_MASTER_PASSWORD=slave_root
+      - MARIADB_USER=user
+      - MARIADB_PASSWORD=slave_root
+      - MARIADB_DATABASE=vedita-database
+      restart: always
